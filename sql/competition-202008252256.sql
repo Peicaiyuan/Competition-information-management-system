@@ -29,7 +29,7 @@ CREATE TABLE `login` (
   `lpower` tinyint unsigned NOT NULL DEFAULT '2',
   PRIMARY KEY (`lId`),
   KEY `login_lid_idx` (`lId`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `login` (
 
 LOCK TABLES `login` WRITE;
 /*!40000 ALTER TABLE `login` DISABLE KEYS */;
-INSERT INTO `login` VALUES (1,'admin','admin',1),(2,'小红','123.com',2),(3,'小黄','123.com',2);
+INSERT INTO `login` VALUES (1,'test','123456',2),(2,'admin','admin',1),(3,'Tom','123456',2),(4,'Jack','123',1),(5,'Marry','123',1),(6,'Mack','1234',2);
 /*!40000 ALTER TABLE `login` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -56,11 +56,11 @@ CREATE TABLE `project` (
   `pEnProv` tinyint unsigned DEFAULT NULL COMMENT '是否进入省赛',
   `pProvResult` tinyint unsigned DEFAULT NULL COMMENT '省赛结果',
   `pEnNation` tinyint unsigned DEFAULT NULL COMMENT '是否进入国赛',
-  `pNaResult` varchar(100) DEFAULT NULL COMMENT '国赛结果',
+  `pNaResult` tinyint unsigned DEFAULT NULL COMMENT '国赛结果',
   PRIMARY KEY (`pId`),
   UNIQUE KEY `project_un` (`pName`),
   KEY `project_pid_idx` (`pId`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='项目情况【主表】';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='项目情况【主表】';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +69,7 @@ CREATE TABLE `project` (
 
 LOCK TABLES `project` WRITE;
 /*!40000 ALTER TABLE `project` DISABLE KEYS */;
-INSERT INTO `project` VALUES (1,'物流管理系统',3,0,NULL,NULL,NULL),(3,'54sdfsdf',3,NULL,NULL,NULL,NULL),(6,'sdf12',3,NULL,NULL,NULL,NULL),(8,'sdf12465',3,NULL,NULL,NULL,NULL),(9,'停车管理系统',3,NULL,NULL,NULL,NULL);
+INSERT INTO `project` VALUES (1,'物流管理系统',3,0,NULL,NULL,NULL),(3,'54sdfsdf',3,NULL,NULL,NULL,NULL),(8,'sdf12465',3,NULL,NULL,NULL,NULL),(9,'停车管理系统',3,NULL,NULL,NULL,NULL),(10,'税务管理系统',1,0,0,0,0);
 /*!40000 ALTER TABLE `project` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -99,7 +99,7 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES (1,'张三',184312101,'计算机','自动化学院','13534342366',1),(3,'李四',184312102,'计算机','自动化学院','19824889432',0);
+INSERT INTO `student` VALUES (1,'张三',184312101,'计算机','自动化学院','13534342366',1),(3,'王五',184312103,'计算机','自动化学院','13413265542',0);
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -112,11 +112,11 @@ DROP TABLE IF EXISTS `teacher`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `teacher` (
   `tId` int NOT NULL AUTO_INCREMENT COMMENT '老师id',
-  `tname` varchar(50) DEFAULT NULL COMMENT '老师姓名',
-  `tphone` varchar(33) DEFAULT NULL COMMENT '老师联系方式',
-  `tTeam` varchar(100) DEFAULT NULL COMMENT '老师指导团队',
-  `tnumber` varchar(30) DEFAULT NULL COMMENT '老师工号',
+  `tName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '老师姓名',
+  `tPhone` varchar(33) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '老师联系方式',
+  `tNumber` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '老师工号',
   PRIMARY KEY (`tId`),
+  UNIQUE KEY `teacher_un` (`tNumber`),
   KEY `teacher_tid_idx` (`tId`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -166,4 +166,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-08-25 16:29:38
+-- Dump completed on 2020-08-25 22:56:56
